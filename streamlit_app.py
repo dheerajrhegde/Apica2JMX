@@ -33,7 +33,8 @@ def run_jmx_test(jmx_xml):
     """
     runs the JMeter tests and returns the results. Gives back and effort in case code excution fails
     """
-    jmeter_path = "/opt/homebrew/Cellar/jmeter/5.6.3/bin/jmeter"
+    #jmeter_path = "/opt/homebrew/Cellar/jmeter/5.6.3/bin/jmeter"
+    jmeter_path = "./jmeter/5.6.3/bin/jmeter"
     jmx_file = "test_jmx.xml"
 
     with open(jmx_file, "w") as f:

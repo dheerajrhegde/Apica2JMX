@@ -19,3 +19,12 @@ timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success
 1718539126142,29,HTTP Request_4,404,Not Found,Thread Group 1-1,text,false,,1868,198,1,1,http://1-ps.googleusercontent.com/h/www.igvita.com/js/libs/modernizr.84728.js.pagespeed.jm._DgXLhVY42.js,29,0,0
 1718539126173,78,HTTP Request_5,200,OK,Thread Group 1-1,text,true,,46754,131,1,1,http://www.google-analytics.com/ga.js,51,0,31
 1718539126252,30,HTTP Request_6,404,Not Found,Thread Group 1-1,text,false,,1892,206,1,1,http://1-ps.googleusercontent.com/beacon?org=50_1_cn&ets=load:93&ifr=0&hft=32&url=http%3A%2F%2Fwww.igvita.com%2F,30,0,0
+1718542973770,1051,Request 1,200,OK,Thread Group 1-1,text,true,,104752,351,1,1,https://ilya.grigorik.com/,246,0,169
+1718542973770,251,Request 1-0,301,Moved Permanently,Thread Group 1-1,text,true,,367,116,1,1,http://www.igvita.com/,246,0,169
+1718542974022,547,Request 1-1,301,Moved Permanently,Thread Group 1-1,text,true,,514,116,1,1,https://www.igvita.com/,547,0,466
+1718542974570,251,Request 1-2,200,OK,Thread Group 1-1,text,true,,103871,119,1,1,https://ilya.grigorik.com/,219,0,194
+1718542974829,52,Request 2,400,Bad Request,Thread Group 1-1,text,false,,2107,125,1,1,http://fonts.googleapis.com/css,52,0,35
+1718542974882,52,Request 3,404,Not Found,Thread Group 1-1,text,false,,1856,186,1,1,http://1-ps.googleusercontent.com/h/www.igvita.com/css/style.css.pagespeed.ce.LzjUDNB25e.css,52,0,37
+1718542974934,16,Request 4,404,Not Found,Thread Group 1-1,text,false,,1868,198,1,1,http://1-ps.googleusercontent.com/h/www.igvita.com/js/libs/modernizr.84728.js.pagespeed.jm._DgXLhVY42.js,16,0,0
+1718542974951,119,Request 5,200,OK,Thread Group 1-1,text,true,,46754,131,1,1,http://www.google-analytics.com/ga.js,69,0,41
+1718542975071,17,Request 6,404,Not Found,Thread Group 1-1,text,false,,1804,134,1,1,http://1-ps.googleusercontent.com/beacon,17,0,0

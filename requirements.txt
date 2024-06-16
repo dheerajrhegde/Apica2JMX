@@ -1,0 +1,7 @@
+langchain
+langchain-core
+langchain-community
+langgraph
+tavily-python
+streamlit
+langchain-openai

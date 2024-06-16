@@ -35,7 +35,7 @@ def run_jmx_test(jmx_xml):
     """
     #jmeter_path = "/opt/homebrew/Cellar/jmeter/5.6.3/bin/jmeter"
     jmeter_path = "./jmeter/5.6.3/bin/jmeter"
-    jmx_file = "test_jmx.xml"
+    jmx_file = "/mount/src/apica2jmx/test_jmx.xml"
 
     with open(jmx_file, "w") as f:
         f.write(jmx_xml)

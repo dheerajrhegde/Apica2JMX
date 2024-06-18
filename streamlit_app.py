@@ -163,5 +163,5 @@ with col1:
 
 with col2:
     st.session_state.abot.graph.bac
-    response = st.session_state.abot.graph.batch({"messages": messages}, st.session_state.thread)
+    response = st.session_state.abot.graph.ainvoke({"messages": messages}, st.session_state.thread)
     st.text_area("JMX XML", key="jmx", value=response['messages'][-1].content, height=600)

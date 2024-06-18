@@ -162,5 +162,5 @@ with col1:
     messages = [HumanMessage(content=apica)]
 
 with col2:
-    response = st.session_state.abot.graph.ainvoke({"messages": messages}, st.session_state.thread)
+    response = st.session_state.abot.graph.invoke({"messages": messages}, st.session_state.thread)
     st.text_area("JMX XML", key="jmx", value=response['messages'][-1].content, height=600)

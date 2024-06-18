@@ -73,6 +73,7 @@ class Agent:
         self.tools = {t.name: t for t in tools}
         self.model = model.bind_tools(tools)
 
+
     def exists_action(self, state: AgentState):
         result = state['messages'][-1]
         return len(result.tool_calls) > 0
@@ -161,5 +162,6 @@ with col1:
     messages = [HumanMessage(content=apica)]
 
 with col2:
-    response = st.session_state.abot.graph.invoke({"messages": messages}, st.session_state.thread)
+    st.session_state.abot.graph.bac
+    response = st.session_state.abot.graph.batch({"messages": messages}, st.session_state.thread)
     st.text_area("JMX XML", key="jmx", value=response['messages'][-1].content, height=600)

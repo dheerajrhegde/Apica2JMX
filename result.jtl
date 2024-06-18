@@ -28,3 +28,19 @@ timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success
 1718542974934,16,Request 4,404,Not Found,Thread Group 1-1,text,false,,1868,198,1,1,http://1-ps.googleusercontent.com/h/www.igvita.com/js/libs/modernizr.84728.js.pagespeed.jm._DgXLhVY42.js,16,0,0
 1718542974951,119,Request 5,200,OK,Thread Group 1-1,text,true,,46754,131,1,1,http://www.google-analytics.com/ga.js,69,0,41
 1718542975071,17,Request 6,404,Not Found,Thread Group 1-1,text,false,,1804,134,1,1,http://1-ps.googleusercontent.com/beacon,17,0,0
+1718548851804,431,HTTP Request,200,OK,Thread Group 1-1,text,true,,282,140,1,1,https://httpbin.org/cookies,427,0,394
+1718550728713,379,HTTP Request,200,OK,Thread Group 1-1,text,true,,282,140,1,1,https://httpbin.org/cookies,375,0,345
+1718550846336,377,HTTP Request,200,OK,Thread Group 1-1,text,true,,725,229,1,1,https://httpbin.org/post?key=value,373,0,342
+1718551269958,397,HTTP Request,200,OK,Thread Group 1-1,text,true,,722,239,1,1,https://httpbin.org/post,394,0,363
+1718555835517,361,POST Request to tattle.api.osano.com,204,No Content,Thread Group 1-1,text,true,,203,1382,1,1,https://tattle.api.osano.com/,0,0,323
+1718556350531,453,https://tattle.api.osano.com/,204,No Content,Thread Group 1-1,text,true,,203,238,1,1,https://tattle.api.osano.com/,0,0,339
+1718556350992,157,https://b.6sc.co/v1/beacon/img.gif,200,OK,Thread Group 1-1,bin,true,,425,166,1,1,https://b.6sc.co/v1/beacon/img.gif?token=8e13197a4b59d807f3ddb87bed95c461,153,0,87
+1718556351150,94,https://ml314.com/imsync.ashx,200,OK,Thread Group 1-1,text,true,,260,145,1,1,https://ml314.com/imsync.ashx?pi=3644921078301589575,94,0,59
+1718556999509,381,Request 1,204,No Content,Thread Group 1-1,text,true,,203,1382,1,1,https://tattle.api.osano.com/,0,0,343
+1718557272596,337,GET /is/image/TCSCOMprod/updated-ar-home-page-banner-for-mobile,200,OK,Thread Group 1-1,bin,true,,27609,200,1,1,https://s7ap1.scene7.com/is/image/TCSCOMprod/updated-ar-home-page-banner-for-mobile?wid=480&hei=189&dpr=off,312,0,283
+1718557272940,40,GET /is/image/TCSCOMprod/AdobeStock_640561105,200,OK,Thread Group 1-1,bin,true,,37245,182,1,1,https://s7ap1.scene7.com/is/image/TCSCOMprod/AdobeStock_640561105?wid=728&hei=408&dpr=off,27,0,0
+1718557417484,491,Request to tattle.api.osano.com,204,No Content,Thread Group 1-1,text,true,,203,1382,1,1,https://tattle.api.osano.com/,0,0,453
+1718559148282,425,Request 1,204,No Content,Thread Group 1-1,text,true,,203,1382,1,1,https://tattle.api.osano.com/,0,0,328
+1718559148715,24,Request 2,204,No Content,Thread Group 1-1,,true,,123,126,1,1,https://tattle.api.osano.com/,0,0,0
+1718559148740,186,Request 3,200,OK,Thread Group 1-1,bin,true,,425,127,1,1,https://b.6sc.co/v1/beacon/img.gif,182,0,86
+1718559148927,303,Request 4,200,OK,Thread Group 1-1,text,true,,260,122,1,1,https://ml314.com/imsync.ashx,303,0,188

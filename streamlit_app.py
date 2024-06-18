@@ -34,8 +34,8 @@ def run_jmx_test(jmx_xml):
     runs the JMeter tests and returns the results. Gives back and effort in case code excution fails
     """
     #jmeter_path = "/opt/homebrew/Cellar/jmeter/5.6.3/bin/jmeter"
-    jmeter_path = "./jmeter/5.6.3/bin/jmeter"
-    jmx_file = "/mount/src/apica2jmx/test_jmx.xml"
+    jmeter_path = "/opt/homebrew/Cellar/jmeter/5.6.3/bin/jmeter"
+    jmx_file = "test_jmx.jmx"
 
     with open(jmx_file, "w") as f:
         f.write(jmx_xml)
@@ -104,6 +104,39 @@ You are tasked with converting existing APICA test scripts provided as HAR file 
 
 Step 1: Understand the APICA HAR file and list out the kep steps in the test
 Step 2: Convert the key steps you identified into a JMX test XML
+Step 3: Save the JMX test XML in memory
+Step 4: Load the JMX text XML  from memory, run the test and get the results
+    - In case of error, return back to step 2 to modify the errors and run again. Use the 'run_jmx_test' tool to run the test
+    - At the end of this step you should have an executed JMX text
+Step 5: If the run is successfull, return the below details
+    - the JMX file content from memory
+    - results of the JMX test run
+    
+You should only output the JMX XML and the results of the JMX test run. Nothing else.
+"""
+
+prompt = """
+You are a Senior Engineer/Developer specializing in performance testing using APICA and JMeter.
+You are tasked with converting existing APICA test scripts provided as HAR file into a JMX file to run using JMeter. 
+
+Step 1: Understand the APICA HAR file and list out the key components in the test
+    - Log: This is the root object of the HAR file and contains the entire content. It includes metadata about the file itself, such as the version number and the creator application.
+    - Pages: This optional array contains information about the visited web pages during the capturing of the HAR file. Each page entry typically includes details like page title and URL.
+    - Entries: Each entry represents a single HTTP request-response transaction. These entries are stored in an array within the "log" object. Each entry contains detailed information about a specific HTTP request made by the browser and the corresponding server's response. Key components of an entry include:
+        - Request: Details of the HTTP request sent by the browser, including URL, HTTP method (GET, POST, etc.), headers, cookies, query parameters, and form data.
+        - Response: Details of the server's response to the request, including status code, headers, cookies set by the server, and response content (if applicable).
+        - Timings: Various timing information related to the request-response cycle, including start time, DNS lookup time, SSL handshake time, request sending time, server response time, and more.
+    - Browser: Information about the browser that generated the HAR file, such as its name and version.
+    - Creator: Details about the software or tool that created the HAR file.
+    - Comment: An optional field that can contain additional user-defined comments or information.
+
+Step 2: Convert the key steps you identified into a JMX test XML
+    - Create a thread group for each page in HAR file. Configure each thread group with appropriate settings
+    - Each HAR entry can be converted to an HTTP Sampler in JMX, replicating the request details including method, URL, headers, and parameters.
+    - For each thread group, add an HTTP Request sampler. Set the HTTP method (GET, POST, etc.), path (extracted from the URLs), and any headers specified in the HAR file.
+    - Add assertions to verify expected responses or content for each HTTP Request sampler, if specified in the HAR file.
+    - Use JMeter Timers to simulate various aspects of HAR timings, such as delays between requests.
+    - Include listeners like Aggregate Report or View Results Tree to monitor the performance metrics during test execution.
 Step 3: Save the JMX test XML in memory
 Step 4: Load the JMX text XML  from memory, run the test and get the results
     - In case of error, return back to step 2 to modify the errors and run again. Use the 'run_jmx_test' tool to run the test

@@ -1,5 +1,5 @@
 import streamlit as st
-
+import time
 import requests, os
 from langchain.pydantic_v1 import BaseModel, Field
 from langchain.tools import BaseTool, StructuredTool, tool
@@ -17,6 +17,9 @@ from langchain.output_parsers import PydanticOutputParser, StructuredOutputParse
 from langchain_community.tools.tavily_search import TavilySearchResults
 from langgraph.checkpoint.sqlite import SqliteSaver
 
+user_name = os.getenv("APICA_USERNAME")
+password = os.getenv("APICA_PASSWORD")
+
 st.set_page_config(
     page_title="Chat App",
     page_icon="💬",
@@ -31,22 +34,63 @@ class JMXScript(BaseModel):
 @tool(args_schema=JMXScript)
 def run_jmx_test(jmx_xml):
     """
-    runs the JMeter tests and returns the results. Gives back and effort in case code excution fails
+    runs the JMeter tests and returns the results. Gives back an error in case code excution fails
     """
-    #jmeter_path = "/opt/homebrew/Cellar/jmeter/5.6.3/bin/jmeter"
-    jmeter_path = "/opt/homebrew/Cellar/jmeter/5.6.3/bin/jmeter"
-    jmx_file = "test_jmx.jmx"
-
-    with open(jmx_file, "w") as f:
+    with open("test.jmx", "w") as f:
         f.write(jmx_xml)
 
-    result = subprocess.run([jmeter_path, "-n", "-t", jmx_file, "-l", "result.jtl"], capture_output=True)
+    create_test_body = {
+        "name": "V4 Create Test Through API",
+        "configuration": {
+            "type": "taurus",
+            "filename": "test.jmx",
+            "testMode": "script",
+            "scriptType": "jmeter"
+        }
+    }
+    print("hust before the first call is made")
+    headers = {
+        "Content-Type": "application/json"
+    }
+    response = requests.post("https://a.blazemeter.com/api/v4/tests", data=json.dumps(create_test_body), headers=headers, auth=HTTPBasicAuth(user_name, password))
+    print(response.json())
+    test_id = response.json()['result']['id']
+    print(test_id)
+    files = {"file": open("test.jmx", "rb")}
+    url = f"https://a.blazemeter.com/api/v4/tests/{test_id}/files"
+    print(url)
+    response = requests.post(url, files=files,
+                             auth=HTTPBasicAuth(user_name, password))
+    print("&&&&&&&&&&&&&&&&&&&&&&")
+    print("response from file upload")
+    print(response.json())
+    print("&&&&&&&&&&&&&&&&&&&&&&")
+    #start test
+    response = requests.post(f"https://a.blazemeter.com/api/v4/tests/{test_id}/start?delayedStart=False",
+                             auth=HTTPBasicAuth(user_name, password))
+    run_id = response.json()['result']['id']
 
-    # Print the output of the JMeter run
-    print(result.stdout.decode())
-    print(result.stderr.decode())
+    #time.sleep(30)
+    url = f"https://a.blazemeter.com/api/v4/masters/{run_id}/status"
+    print(url)
+    while True:
+        response = requests.get(url,
+                                 auth=HTTPBasicAuth(user_name, password))
+        print("Status response is ^^^^^^^^^^^^^^^^^^^")
+        print(response.json())
+        print("^^^^^^^^^^^^^^^^^^^^^^")
+        try:
+            if response.json()['result']['status'] == "ENDED":
+                break
+        except:
+            print("tried to get result. Failed. Will try again")
+        time.sleep(10)
 
-    return result  # , result.stdout.decode(), result.stderr.decode()
+    url = f"https://a.blazemeter.com/api/v4/masters/{run_id}/reports/default/summary"
+    response = requests.get(url,auth=HTTPBasicAuth(user_name, password))
+    return response
+
+
 
 tavily_tool = TavilySearchResults(max_results=4)
 tools = [run_jmx_test, tavily_tool]
@@ -144,7 +188,7 @@ Step 4: Load the JMX text XML  from memory, run the test and get the results
     - At the end of this step you should have an executed JMX text
 Step 5: If the run is successfull, return the below details
     - the JMX file content from memory
-    - results of the JMX test run
+    - summary of the JMX test run (response times, errors, throughput, etc.)
     
 You should only output the JMX XML and the results of the JMX test run. Nothing else.
 """
@@ -163,4 +207,7 @@ with col1:
 
 with col2:
     response = st.session_state.abot.graph.invoke({"messages": messages}, st.session_state.thread)
+    print("===========================")
+    print(response)
+    print("===========================")
     st.text_area("JMX XML", key="jmx", value=response['messages'][-1].content, height=600)

@@ -61,10 +61,8 @@ def run_jmx_test(jmx_xml):
     print(url)
     response = requests.post(url, files=files,
                              auth=HTTPBasicAuth(user_name, password))
-    print("&&&&&&&&&&&&&&&&&&&&&&")
     print("response from file upload")
     print(response.json())
-    print("&&&&&&&&&&&&&&&&&&&&&&")
     #start test
     response = requests.post(f"https://a.blazemeter.com/api/v4/tests/{test_id}/start?delayedStart=False",
                              auth=HTTPBasicAuth(user_name, password))
